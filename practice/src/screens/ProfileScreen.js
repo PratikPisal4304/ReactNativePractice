@@ -1,20 +1,30 @@
 // src/screens/ProfileScreen.js
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 
 const ProfileScreen = ({ navigation }) => {
   // Example user data
   const user = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    bio: 'I am a software developer who loves building mobile apps with React Native.',
-    profilePicture: 'https://via.placeholder.com/150', // Placeholder image URL
+    name: "John Doe",
+    email: "john.doe@example.com",
+    bio: "I am a software developer who loves building mobile apps with React Native.",
+    profilePicture: "https://www.headshotpro.com/avatar-results/danny-1.webp", // Placeholder image URL
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Profile Picture */}
-      <Image source={{ uri: user.profilePicture }} style={styles.profileImage} />
+      <Image
+        source={{ uri: user.profilePicture }}
+        style={styles.profileImage}
+      />
 
       {/* User Name */}
       <Text style={styles.name}>{user.name}</Text>
@@ -30,7 +40,7 @@ const ProfileScreen = ({ navigation }) => {
       {/* Edit Profile Button */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('EditProfile')} // Navigate to EditProfile screen
+        onPress={() => navigation.navigate("EditProfile")} // Navigate to EditProfile screen
       >
         <Text style={styles.buttonText}>Edit Profile</Text>
       </TouchableOpacity>
@@ -38,7 +48,7 @@ const ProfileScreen = ({ navigation }) => {
       {/* Logout Button */}
       <TouchableOpacity
         style={[styles.button, styles.logoutButton]}
-        onPress={() => alert('Logged out!')} // Replace with actual logout logic
+        onPress={() => alert("Logged out!")} // Replace with actual logout logic
       >
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
@@ -50,9 +60,9 @@ const ProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: "#F5FCFF",
   },
   profileImage: {
     width: 150,
@@ -62,21 +72,21 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-    color: '#333',
+    color: "#333",
   },
   email: {
     fontSize: 16,
-    color: '#666',
+    color: "#666",
     marginBottom: 20,
   },
   bioContainer: {
-    width: '100%',
+    width: "100%",
     padding: 15,
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
@@ -85,24 +95,24 @@ const styles = StyleSheet.create({
   },
   bioText: {
     fontSize: 14,
-    color: '#444',
+    color: "#444",
     lineHeight: 20,
   },
   button: {
-    width: '80%',
+    width: "80%",
     padding: 15,
-    backgroundColor: '#007BFF',
+    backgroundColor: "#007BFF",
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 10,
   },
   logoutButton: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: "#FF3B30",
   },
   buttonText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 
