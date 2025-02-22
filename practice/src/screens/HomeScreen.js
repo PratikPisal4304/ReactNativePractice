@@ -9,27 +9,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "../context/ThemeContext";
+import data from "./data/data.json"; // Import the JSON file
 
 const HomeScreen = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
-
-  const data = [
-    { id: "1", title: "React Native Basics" },
-    { id: "2", title: "Expo Framework" },
-    { id: "3", title: "Navigation in React Native" },
-    { id: "4", title: "API Integration" },
-    { id: "5", title: "State Management" },
-    { id: "6", title: "Using Firebase in React Native" },
-    { id: "7", title: "Authentication & Security" },
-    { id: "8", title: "Animations in React Native" },
-    { id: "9", title: "Optimizing Performance" },
-    { id: "10", title: "Building UI Components" },
-    { id: "11", title: "Working with Databases" },
-    { id: "12", title: "Using Redux & Context API" },
-    { id: "13", title: "Deploying Your App" },
-    { id: "14", title: "Advanced Hooks & Custom Hooks" },
-  ];
 
   return (
     <SafeAreaView
@@ -38,7 +22,7 @@ const HomeScreen = () => {
     >
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={isDarkMode ? "#121212" : "#F5FCFF"} />
       <FlatList
-        data={data}
+        data={data} // Use the imported data
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 100 }}
         ListHeaderComponent={() => (
