@@ -138,9 +138,7 @@ const Routes = () => {
         <Tab.Screen 
           name="Setting" 
           component={SettingScreen}
-          options={{
-            headerShown: true,
-            title: "Settings", 
+          options={{ 
             tabBarLabel: ({ focused }) => (
               <Animated.Text
                 style={{
