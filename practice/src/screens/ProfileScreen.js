@@ -1,116 +1,98 @@
-// src/screens/ProfileScreen.js
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "../context/ThemeContext";
 
-const ProfileScreen = ({ navigation }) => {
-  // Example user data
-  const user = {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    bio: "I am a software developer who loves building mobile apps with React Native.",
-    profilePicture: "https://www.headshotpro.com/avatar-results/danny-1.webp", // Placeholder image URL
-  };
+const ProfileScreen = () => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Profile Picture */}
-      <Image
-        source={{ uri: user.profilePicture }}
-        style={styles.profileImage}
-      />
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: isDarkMode ? "#121212" : "#F5FCFF" }]}
+      edges={["top"]}
+    >
+      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={isDarkMode ? "#121212" : "#F5FCFF"} />
 
-      {/* User Name */}
-      <Text style={styles.name}>{user.name}</Text>
+      <View style={[styles.container, { backgroundColor: isDarkMode ? "#1E1E1E" : "#FFF" }]}>
+        {/* Profile Image */}
+        <Image
+          source={{ uri: "https://www.headshotpro.com/avatar-results/danny-1.webp" }} // Replace with actual image URL
+          style={styles.profileImage}
+        />
 
-      {/* User Email */}
-      <Text style={styles.email}>{user.email}</Text>
+        {/* Profile Name */}
+        <Text style={[styles.name, { color: isDarkMode ? "#FFF" : "#000" }]}>John Doe</Text>
 
-      {/* Bio Section */}
-      <View style={styles.bioContainer}>
-        <Text style={styles.bioText}>{user.bio}</Text>
+        {/* Email */}
+        <Text style={[styles.email, { color: isDarkMode ? "#CCC" : "#555" }]}>johndoe@example.com</Text>
+
+        {/* Bio Section */}
+        <Text style={[styles.bio, { color: isDarkMode ? "#BBB" : "#666" }]}>
+          Passionate developer, React Native enthusiast, and tech explorer.
+        </Text>
+
+        {/* Edit Profile Button */}
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: isDarkMode ? "#444" : "#007BFF" }]}
+          onPress={() => alert("Edit Profile")}
+        >
+          <Text style={[styles.buttonText, { color: "#FFF" }]}>Edit Profile</Text>
+        </TouchableOpacity>
+
+        {/* Logout Button */}
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: isDarkMode ? "#AA0000" : "#FF3B30" }]}
+          onPress={() => alert("Logout")}
+        >
+          <Text style={[styles.buttonText, { color: "#FFF" }]}>Logout</Text>
+        </TouchableOpacity>
       </View>
-
-      {/* Edit Profile Button */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("EditProfile")} // Navigate to EditProfile screen
-      >
-        <Text style={styles.buttonText}>Edit Profile</Text>
-      </TouchableOpacity>
-
-      {/* Logout Button */}
-      <TouchableOpacity
-        style={[styles.button, styles.logoutButton]}
-        onPress={() => alert("Logged out!")} // Replace with actual logout logic
-      >
-        <Text style={styles.buttonText}>Logout</Text>
-      </TouchableOpacity>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 // Styles
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   container: {
-    flexGrow: 1,
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#F5FCFF",
+    borderRadius: 10,
   },
   profileImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    marginBottom: 20,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 15,
   },
   name: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 10,
-    color: "#333",
+    marginBottom: 5,
   },
   email: {
     fontSize: 16,
-    color: "#666",
-    marginBottom: 20,
+    marginBottom: 15,
   },
-  bioContainer: {
-    width: "100%",
-    padding: 15,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
-    marginBottom: 20,
-  },
-  bioText: {
+  bio: {
     fontSize: 14,
-    color: "#444",
-    lineHeight: 20,
+    textAlign: "center",
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
   button: {
-    width: "80%",
+    marginTop: 10,
     padding: 15,
-    backgroundColor: "#007BFF",
     borderRadius: 10,
     alignItems: "center",
-    marginBottom: 10,
-  },
-  logoutButton: {
-    backgroundColor: "#FF3B30",
+    width: "80%",
   },
   buttonText: {
-    color: "#FFF",
     fontSize: 16,
     fontWeight: "bold",
   },

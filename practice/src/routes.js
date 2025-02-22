@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
@@ -28,7 +28,7 @@ const ProfileStack = () => {
 // Main Tab Navigator
 const Routes = () => {
   return (
-    <NavigationContainer>
+    
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
@@ -154,7 +154,7 @@ const Routes = () => {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
+   
   );
 };
 

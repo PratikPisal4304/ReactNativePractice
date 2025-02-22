@@ -8,8 +8,12 @@ import {
   StatusBar,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "../context/ThemeContext";
 
 const HomeScreen = () => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
+
   const data = [
     { id: "1", title: "React Native Basics" },
     { id: "2", title: "Expo Framework" },
@@ -28,31 +32,38 @@ const HomeScreen = () => {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={["top"]}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F5FCFF" />
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: isDarkMode ? "#121212" : "#F5FCFF" }]}
+      edges={["top"]}
+    >
+      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={isDarkMode ? "#121212" : "#F5FCFF"} />
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 100 }}
         ListHeaderComponent={() => (
           <>
-            <Text style={styles.header}>"Master React Native with Us!"</Text>
-            <Text style={styles.subText}>
+            <Text style={[styles.header, { color: isDarkMode ? "#FFF" : "#000" }]}>
+              "Master React Native with Us!"
+            </Text>
+            <Text style={[styles.subText, { color: isDarkMode ? "#CCC" : "#555" }]}>
               Scroll to explore topics
             </Text>
           </>
         )}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.cardText}>{item.title}</Text>
+          <View style={[styles.card, { backgroundColor: isDarkMode ? "#1E1E1E" : "#FFF" }]}>
+            <Text style={[styles.cardText, { color: isDarkMode ? "#FFF" : "#333" }]}>{item.title}</Text>
           </View>
         )}
         ListFooterComponent={() => (
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, { backgroundColor: isDarkMode ? "#444" : "#007BFF" }]}
             onPress={() => alert("Explore More!")}
           >
-            <Text style={styles.buttonText}>Explore More</Text>
+            <Text style={[styles.buttonText, { color: isDarkMode ? "#FFF" : "#FFF" }]}>
+              Explore More
+            </Text>
           </TouchableOpacity>
         )}
         showsVerticalScrollIndicator={false}
@@ -65,7 +76,6 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#F5FCFF",
   },
   header: {
     fontSize: 24,
@@ -76,12 +86,10 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 16,
-    color: "#555",
     marginBottom: 20,
     textAlign: "center",
   },
   card: {
-    backgroundColor: "#fff",
     padding: 15,
     marginVertical: 8,
     borderRadius: 10,
@@ -95,11 +103,9 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#333",
   },
   button: {
     marginTop: 20,
-    backgroundColor: "#007BFF",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
@@ -107,7 +113,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonText: {
-    color: "#FFF",
     fontSize: 16,
     fontWeight: "bold",
   },
