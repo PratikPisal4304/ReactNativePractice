@@ -6,6 +6,7 @@ import Animated from "react-native-reanimated";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import EditProfileScreen from "./screens/EditProfileScreen"; // New screen
+import SettingScreen from "./screens/SettingScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -68,6 +69,8 @@ const Routes = () => {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Profile") {
               iconName = focused ? "person" : "person-outline";
+            } else if (route.name === "Setting") {
+              iconName = focused ? "settings" : "settings-outline";
             }
             return (
               <Animated.View 
@@ -128,6 +131,26 @@ const Routes = () => {
                 }}
               >
                 Profile
+              </Animated.Text>
+            ),
+          }}
+        />
+        <Tab.Screen 
+          name="Setting" 
+          component={SettingScreen}
+          options={{
+            headerShown: true,
+            title: "Settings", 
+            tabBarLabel: ({ focused }) => (
+              <Animated.Text
+                style={{
+                  color: focused ? "blue" : "#8e8e8e",
+                  fontSize: 12,
+                  fontWeight: focused ? '600' : '400',
+                  opacity: focused ? 1 : 0.8,
+                }}
+              >
+                Setting
               </Animated.Text>
             ),
           }}
