@@ -33,11 +33,12 @@ const HomeScreen = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingBottom: 100 }}
         ListHeaderComponent={() => (
           <>
-            <Text style={styles.header}>Welcome to Home Screen</Text>
+            <Text style={styles.header}>"Master React Native with Us!"</Text>
             <Text style={styles.subText}>
-              Scroll to explore topics & click the button below!
+              Scroll to explore topics
             </Text>
           </>
         )}
